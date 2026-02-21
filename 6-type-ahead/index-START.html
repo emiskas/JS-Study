@@ -26,7 +26,6 @@ fetch(endpoint)
 
 function findMatches(wordMatch, cities) {
   return cities.filter(place => {
-    // HOW COULD I DO IT WITHOUT REGEX
     const regex = new RegExp(wordMatch, 'gi');
     return place.city.match(regex) || place.state.match(regex)
   })
@@ -57,13 +56,6 @@ const suggestions = document.querySelector('.suggestions');
 
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches);
-
-//  WHY WONT THIS WORK
-// fetch(endpoint)
-//         .then(blob => blob.json())
-//         .then(data => const cities = data);
-
-
 </script>
 </body>
 </html>
