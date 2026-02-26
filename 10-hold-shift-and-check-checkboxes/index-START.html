@@ -103,22 +103,18 @@
   let firstChecked;
 
   function handleCheck(e) {
+    let inBetween = false;
     if (e.shiftKey && this.checked) {
-      checkboxes.forEach(checkbox => {
-        if (!firstChecked && checkbox.checked) {
-          firstChecked = this;
-        } else if (firstChecked && !checkbox.checked) {
-          checkbox.checked = true;
-        } else if (firstChecked && checkbox.checked) {
-          lastChecked = checkbox.checked;
+      checkboxes.forEach((checkbox) => {
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween;
         }
-      });
+        if (inBetween) {
+          checkbox.checked = true;
+        }
+      })
     }
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        console.log(checkbox);
-      }
-    })
+    lastChecked = this;
   }
 
   checkboxes.forEach(checkbox => {
